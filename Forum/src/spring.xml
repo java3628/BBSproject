@@ -12,7 +12,7 @@
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-.xsd">
 
-     <context:component-scan base-package="UserRestApi"/>
+   <!--   <context:component-scan base-package="UserRestApi"/> -->
      <context:annotation-config />
      
      <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
@@ -21,11 +21,7 @@
 	   </property>
     </bean>
     
-    <bean id ="resturantDaoImpl" class="ResturantDao.ResturantDaoImpl" />
-    <bean id ="userDaoImpl" class="userDao.UserDaoImpl"/>
-    <bean id = "commentDaoImpl" class="CommentDao.CommentDaoImpl"/>
-    <bean id = "userRestApi" class="UserRestApi.userResApi"/>
-    <bean id ="userService" class="UserService.UserService"/>
+    <bean id = "userDaoImpl" class="UserDao.UserDaoImpl"/>
  
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -35,8 +31,8 @@
         <property name="password" value=""/>
     </bean>	
  
- <tx:advice id="txAdvice" transaction-manager="transactionManager">
-  <!-- 配置详细的事务语义 -->
+ <!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+  配置详细的事务语义
   <tx:attributes>
  
    <tx:method name="readAllUser" read-only="false"/>
@@ -47,14 +43,14 @@
  </tx:advice>
  
   <aop:config>
-  <!--配置切入点，匹配com.company.biz.service.impl包下所有的类的所有方法的执行-->
+  配置切入点，匹配com.company.biz.service.impl包下所有的类的所有方法的执行
   <aop:pointcut id="allServiceMethod"
    expression="execution(* UserService.UserService.*(..))
    ||execution(* ResturantDao.ResturantDaoImpl.*(..))
    ||execution(* CommentDao.CommentDaoImpl.*(..))"/>
-  <!-- 指定在txAdvice切入点应用txAdvice事务切面 -->
+  指定在txAdvice切入点应用txAdvice事务切面
   <aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethod"/>
- </aop:config>
+ </aop:config> -->
     
     <bean id="sessionFactory"
         class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -68,14 +64,14 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean    class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+   <!--  <bean    class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
     <bean    class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
                 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
             </list>
         </property>
-    </bean>
+    </bean> -->
     
 </beans>
 

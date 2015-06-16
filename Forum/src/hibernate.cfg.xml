@@ -26,10 +26,7 @@
                <property name="hibernate.hbm2ddl.auto">update</property>
         <!-- Mention here all the model classes along with their package name -->
  		 
- 	   <mapping class="pojos.Comment"/>
-       <mapping class="pojos.User"/>
-       <mapping class="pojos.Resturant"/>
-       <mapping class="pojos.Image"/>
+ 	   <mapping class="Pojos.User"/>
     </session-factory>
     
 </hibernate-configuration>
